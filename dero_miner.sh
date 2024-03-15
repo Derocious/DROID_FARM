@@ -26,19 +26,19 @@ if [ $PLATFORM == "arm64" ]; then
     echo "$(pwd)/hansen33* --wallet-address $WALLET --mining-threads 2 --workers $WORKERS --daemon-rpc-address $POOL_ADDRESS --turbo" >> start_miner.sh
     chmod +x start_miner.sh
     MINING_SCRIPT="$(pwd)/start_miner.sh"
-    echo "tmux new-session 'bash "$MINING_SCRIPT"'" >> $HOME/.bashrc
-    tmux new-session 'bash "$MINING_SCRIPT"'
+    echo "tmux new-session \"bash $MINING_SCRIPT\"" >> $HOME/.bashrc
+    tmux new-session "bash $MINING_SCRIPT"
 else 
     wget $DERO_CLI_MINER_LINK
     tar -xvf dero_linux*.tar.gz
     rm dero_linux*.tar.gz
+    cd dero_linux_arm7
     chmod +x dero-miner*
     echo "#!/data/data/com.termux/files/usr/bin/bash" >> start_miner.sh
     echo " " >> start_miner.sh
-    echo "$(pwd)/dero-miner* --wallet-address $WALLET --daemon-address $POOL_ADDRESS --threads $CPU_THREADS" >> start_miner.sh
+    echo "$(pwd)/dero-miner* --wallet-address $WALLET --daemon-rpc-address 213.171.208.37:10300 --mining-threads $CPU_THREADS" >> start_miner.sh
     chmod +x start_miner.sh
-    MINING_SCRIPT=".$(pwd)/start_miner.sh"
-    echo "tmux new-session 'bash "$MINING_SCRIPT"'" >> $HOME/.bashrc
-    tmux new-session 'bash "$MINING_SCRIPT"'
+    MINING_SCRIPT="$(pwd)/start_miner.sh"
+    echo "tmux new-session \"bash $MINING_SCRIPT\"" >> $HOME/.bashrc
+    tmux new-session "bash $MINING_SCRIPT"
 fi
-
