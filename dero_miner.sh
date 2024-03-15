@@ -12,6 +12,7 @@ else
     PLATFORM="arm32"    
 fi
 
+termux-wake-lock
 pkg update && pkg upgrade -y
 pkg install golang wget curl git tmux -y
 
